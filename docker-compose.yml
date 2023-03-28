@@ -8,9 +8,9 @@ services:
     image: artist0123/vote:latest
     # use python rather than gunicorn for local dev
     command: python app.py
-    depends_on:
-      redis:
-        condition: service_healthy
+    # depends_on:
+    #   redis:
+    #     condition: service_healthy
     healthcheck: 
       test: ["CMD", "curl", "-f", "http://54.145.199.161:5000/"]
       interval: 15s
@@ -30,9 +30,9 @@ services:
     image: artist0123/result:latest
     # use nodemon rather than node for local dev
     entrypoint: nodemon server.js
-    depends_on:
-      db:
-        condition: service_healthy 
+    # depends_on:
+    #   db:
+    #     condition: service_healthy 
     volumes:
       - ./result:/app
     ports:
@@ -46,11 +46,11 @@ services:
     build:
       context: ./worker
     image: artist0123/worker:latest
-    depends_on:
-      redis:
-        condition: service_healthy 
-      db:
-        condition: service_healthy 
+    # depends_on:
+    #   redis:
+    #     condition: service_healthy 
+    #   db:
+    #     condition: service_healthy 
     networks:
       - back-tier
 
