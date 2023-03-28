@@ -12,7 +12,7 @@ services:
       redis:
         condition: service_healthy
     healthcheck: 
-      test: ["CMD", "curl", "-f", "http://54.145.199.161"]
+      test: ["CMD", "curl", "-f", "http://localhost"]
       interval: 15s
       timeout: 5s
       retries: 3
@@ -45,7 +45,7 @@ services:
   worker:
     build:
       context: ./worker
-    image: artist0123/worker:latest
+    #image: artist0123/worker:latest
     depends_on:
       redis:
         condition: service_healthy 
