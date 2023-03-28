@@ -5,7 +5,7 @@
 services:
   vote:
     build: ./vote
-    # image: artist0123/vote:latest
+    image: artist0123/vote:latest
     # use python rather than gunicorn for local dev
     command: python app.py
     depends_on:
@@ -27,7 +27,7 @@ services:
 
   result:
     build: ./result
-    # image: artist0123/result:latest
+    image: artist0123/result:latest
     # use nodemon rather than node for local dev
     entrypoint: nodemon server.js
     depends_on:
@@ -82,7 +82,7 @@ services:
   # it won't run unless you specify the "seed" profile
   # docker compose --profile seed up -d
   seed:
-    # image: artist0123/seed:latest
+    image: artist0123/seed:latest
     build: ./seed-data
     profiles: ["seed"]
     depends_on:
