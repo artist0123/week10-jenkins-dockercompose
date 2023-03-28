@@ -1,7 +1,6 @@
 pipeline {
     agent any
 
- 
     stages {
         stage('Initialize Stage') {
             steps {
@@ -14,7 +13,6 @@ pipeline {
             }
         }
 
-
         stage('Build Stage') {
             steps {
                 dir('Lab_jenkins_dockercompose') { // change directory to Lab_docker_Jenkins
@@ -24,8 +22,15 @@ pipeline {
             }
         }
 
-    
-       
+        stage('Push to Dockerhub Stage') {
+            steps {
+                dir('Lab_jenkins_dockercompose') { // change directory to Lab_docker_Jenkins
+                    echo "Current path is ${pwd()}"
+                    echo "Pushing images to dockerhub"
+                    sh "docker-compose push"
+                }
+            }
+        }
 
     }
 }
