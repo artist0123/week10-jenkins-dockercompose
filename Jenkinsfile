@@ -28,7 +28,7 @@ pipeline {
             steps {
                 dir('Lab_jenkins_dockercompose') { // change directory to Lab_docker_Jenkins
                     sh "docker login -u ${DOCKERHUB_COMMON_CREDS_USR} -p ${DOCKERHUB_COMMON_CREDS_PSW}"
-                    sh "docker-compose up -d"
+                    sh "docker-compose up -d --build"
                 }
             }
         }
