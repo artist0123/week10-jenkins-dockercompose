@@ -12,7 +12,7 @@ services:
       redis:
         condition: service_healthy
     healthcheck: 
-      test: ["CMD", "curl", "-f", "http://localhost"]
+      test: ["CMD", "curl", "-f", "http://54.145.199.161:5000/"]
       interval: 15s
       timeout: 5s
       retries: 3
@@ -45,12 +45,12 @@ services:
   worker:
     build:
       context: ./worker
-    #image: artist0123/worker:latest
-    # depends_on:
-    #   redis:
-    #     condition: service_healthy 
-    #   db:
-    #     condition: service_healthy 
+    image: artist0123/worker:latest
+    depends_on:
+      redis:
+        condition: service_healthy 
+      db:
+        condition: service_healthy 
     networks:
       - back-tier
 
@@ -58,9 +58,9 @@ services:
     image: redis:alpine
     volumes:
       - "./healthchecks:/healthchecks"
-    healthcheck:
-      test: /healthchecks/redis.sh
-      interval: "5s"
+    # healthcheck:
+    #   test: /healthchecks/redis.sh
+    #   interval: "5s"
     networks:
       - back-tier
 
@@ -72,9 +72,9 @@ services:
     volumes:
       - "db-data:/var/lib/postgresql/data"
       - "./healthchecks:/healthchecks"
-    healthcheck:
-      test: /healthchecks/postgres.sh
-      interval: "5s"
+    # healthcheck:
+    #   test: /healthchecks/postgres.sh
+    #   interval: "5s"
     networks:
       - back-tier
 
