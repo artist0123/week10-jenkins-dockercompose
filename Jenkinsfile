@@ -3,7 +3,7 @@ pipeline {
     environment {
         DOCKERHUB_COMMON_CREDS = credentials('dockerhub')
     }
-    stages {G
+    stages {
         stage('Initialize Stage') {
             steps {
             
