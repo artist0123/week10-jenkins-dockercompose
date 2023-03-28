@@ -11,7 +11,7 @@ args=(
 	--host "$host"
 	--username "$user"
 	--dbname "$db"
-	# --quiet 
+	--quiet 
 	--no-align --tuples-only
 )
 
